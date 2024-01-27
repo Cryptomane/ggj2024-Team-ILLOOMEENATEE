@@ -99,7 +99,7 @@ public class HitTargetMinigame : MonoBehaviour
 
         for (int i = 0; i < targets.Length; i++)
         {
-            targets[i] = Instantiate(targetTemplate.gameObject, targetTemplate.transform).transform;
+            targets[i] = Instantiate(targetTemplate.gameObject, targetTemplate.parent).transform;
         }
 
         targetIndex = 0;

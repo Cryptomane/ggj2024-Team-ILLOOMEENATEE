@@ -81,6 +81,8 @@ public class HitTargetController : MonoBehaviour
     {
         target.position = new Vector3(sign > 0 ? leftPosition.position.x : rightPosition.position.x, crosshair.position.y, 0);
 
+        target.localRotation = Quaternion.Euler(0, sign > 0 ? 0 : 180, 0);
+
         targets.Add(target);
         targetsSigns.Add(sign);
     }
