@@ -15,11 +15,15 @@ public class AimMinigame : MonoBehaviour
     private void OnEnable()
     {
         InputManager.OnAHit += OnAHit;
+
+        MinigameManager.OnGameStartRequested += StartMinigame;
     }
 
     private void OnDisable()
     {
         InputManager.OnAHit -= OnAHit;
+
+        MinigameManager.OnGameStartRequested -= StartMinigame;
     }
     private void StartMinigame(Minigame minigame)
     {
