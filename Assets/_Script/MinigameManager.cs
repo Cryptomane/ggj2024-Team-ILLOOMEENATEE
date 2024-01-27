@@ -65,14 +65,14 @@ public class MinigameManager : MonoBehaviour
 				}
 				break;
 			case GameState.INTRO:
-				if (Input.anyKey)
+				if (InputManager.GetKeyDown(InputManager.Key.ANY))
 				{
 					m_Minigames.InitRound();
 					ShowControlsScreen();
 				}
 				break;
 			case GameState.CONTROLS:
-				if (Input.anyKey)
+				if (InputManager.GetKeyDown(InputManager.Key.ANY))
 				{
 					StartMinigame();
 				}
@@ -83,7 +83,6 @@ public class MinigameManager : MonoBehaviour
 					ShowResultsScreen();
 				}
 				m_Timer -= Time.deltaTime;
-
 				break;
 			case GameState.RESULT:
 				break;
