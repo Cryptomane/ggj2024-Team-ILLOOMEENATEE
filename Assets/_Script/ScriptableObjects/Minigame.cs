@@ -4,7 +4,7 @@ using UnityEngine;
 public class Minigame : ScriptableObject
 {
 	[SerializeField] private string m_SceneName = "";
-	[SerializeField] private string m_Name = "";
+	[SerializeField] private string m_GameName = "";
 	[SerializeField] private string m_InstructionsText = "";
 	[SerializeField] private GameObject m_InstructionsControlsPrefab;
 	[SerializeField] private int m_ScoreGoal = 100;
@@ -14,7 +14,7 @@ public class Minigame : ScriptableObject
 
 
 	public string SceneName => m_SceneName;
-	public string Name => m_Name;
+	public string Name => m_GameName;
 	public string InstructionsText => m_InstructionsText;
 	public GameObject InstructionsControlsPrefab => m_InstructionsControlsPrefab;
 	public int ScoreGoal  => m_ScoreGoal;

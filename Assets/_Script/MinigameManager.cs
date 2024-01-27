@@ -14,6 +14,8 @@ public class MinigameManager : MonoBehaviour
 		RESULT          // Result logic that select next minigame, round or game over
 	}
 
+	[SerializeField] private Animator m_TransitionAnimator;
+
 	[Header("Data")]
     [SerializeField] private MinigameSelection m_Minigames;
 
@@ -30,6 +32,9 @@ public class MinigameManager : MonoBehaviour
 	private GameState m_CurrentState;
 	private GameState m_NextState;
 	private bool m_Transitioning;
+
+	private int m_TransitionStartAnimationTrigger = Animator.StringToHash("start");
+	private int m_TransitionEndAnimationTrigger = Animator.StringToHash("end");
     
  private void Update()
     {
@@ -47,10 +52,10 @@ public class MinigameManager : MonoBehaviour
 					m_NextState = GameState.COMMANDS;
 					m_CurrentState = GameState.TRANSITION;
 					m_Transitioning = true;
-                    CommandsScreen();
+					m_Minigames.InitRound();
+                    ShowCommandsScreen();
                 }
                 break;
-
         case GameState.COMMANDS:
                 if (Input.anyKey)
                 {
@@ -68,26 +73,28 @@ public class MinigameManager : MonoBehaviour
         startMinigame(m_CurrentMinigame.Duration);
     }
 
-    public void CommandsScreen()
+    public void ShowCommandsScreen()
     {
-        m_Minigames.InitRound();
+		m_CurrentMinigame = m_Minigames.GetNextMinigame();
 		StartCoroutine(LoadMinigameScene(m_CurrentMinigame.SceneName));
+		m_Commands.Init(m_CurrentMinigame.InstructionsControlsPrefab);
     }
 
 	private IEnumerator LoadMinigameScene(string sceneName)
 	{
+		m_TransitionAnimator.SetTrigger(m_TransitionStartAnimationTrigger);
+
+		yield return new WaitForSecondsRealtime(0.7f);
 		AsyncOperation loading = SceneManager.LoadSceneAsync(sceneName, LoadSceneMode.Additive);
 
 		while(!loading.isDone)
 		{
-			yield return new WaitForEndOfFrame;
+			yield return new WaitForEndOfFrame();
 		}
-	}
 
-    private void showCommands()
-    {
-        
-    }
+		m_TransitionAnimator.SetTrigger(m_TransitionEndAnimationTrigger);
+		m_Transitioning = false;
+	}
 
     IEnumerator startMinigame(float seconds)
     {
