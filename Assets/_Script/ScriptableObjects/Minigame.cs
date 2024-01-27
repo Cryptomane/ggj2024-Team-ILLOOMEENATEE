@@ -12,6 +12,7 @@ public class Minigame : ScriptableObject
 	[SerializeField, Range(.1f, .9f)] private float m_MinTarget;
 	[SerializeField, Range(.1f, .9f)] private float m_MaxTarget;
 
+	private int m_RoundScore;
 
 	public string SceneName => m_SceneName;
 	public string Name => m_GameName;
@@ -21,4 +22,28 @@ public class Minigame : ScriptableObject
 	public float Duration  => m_Duration;
 	public float MinTargetValue  => m_MinTarget;
 	public float MaxTargetValue  => m_MaxTarget;
+
+	public void Init()
+	{
+		m_RoundScore = 0;
+	}
+
+	public bool Success()
+	{
+		return m_RoundScore >= m_ScoreGoal;
+	}
+
+	public void AddToScore(int a)
+	{
+		m_RoundScore += a;
+	}
+
+	/// <summary>
+	/// Usiamo questo per i fallimenti di diverso tipo:
+	/// </summary>
+	/// <returns>1 - Successo; 2 - Failed High; 0 - Failed Low</returns>
+	public int GetScore()
+	{
+		return m_RoundScore;
+	}
 }

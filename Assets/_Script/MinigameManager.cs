@@ -28,11 +28,11 @@ public class MinigameManager : MonoBehaviour
 	[Header("Game Elements")]
 	[SerializeField] private GameObject m_RoundIntro;
 	[SerializeField] private ControlsScreen m_Commands;
-	[SerializeField] private GameObject m_Result;
+	[SerializeField] private GameObject m_Results;
 
-	private static event Action m_OnGameStartRequested;
+	private static event Action<Minigame> m_OnGameStartRequested;
 
-	public static event Action OnGameStartRequested
+	public static event Action<Minigame> OnGameStartRequested
 	{
 		add
 		{
@@ -80,6 +80,7 @@ public class MinigameManager : MonoBehaviour
 			case GameState.MINIGAME:
 				if (m_Timer <= 0)
 				{
+					ShowResultsScreen();
 				}
 				m_Timer -= Time.deltaTime;
 
@@ -93,7 +94,7 @@ public class MinigameManager : MonoBehaviour
 		}
 	}
 
-	public void ShowControlsScreen()
+	private void ShowControlsScreen()
 	{
 		m_NextState = GameState.CONTROLS;
 		m_CurrentState = GameState.TRANSITION;
@@ -103,12 +104,21 @@ public class MinigameManager : MonoBehaviour
 		m_Commands.Show(m_CurrentMinigame.InstructionsControlsPrefab);
 	}
 
+	private void ShowResultsScreen()
+	{
+		m_NextState = GameState.RESULT;
+		m_CurrentState = GameState.TRANSITION;
+		m_Transitioning = true;
+		StartCoroutine(UnloadMinigameScene(m_CurrentMinigame.SceneName));
+		
+	}
+
 	private void StartMinigame()
 	{
 		m_Timer = m_CurrentMinigame.Duration;
 		m_CurrentState = GameState.MINIGAME;
 		m_Commands.Hide();
-		m_OnGameStartRequested?.Invoke();
+		m_OnGameStartRequested?.Invoke(m_CurrentMinigame);
 	}
 
 	private IEnumerator LoadMinigameScene(string sceneName)
@@ -117,6 +127,23 @@ public class MinigameManager : MonoBehaviour
 
 		yield return new WaitForSecondsRealtime(0.7f);
 		AsyncOperation loading = SceneManager.LoadSceneAsync(sceneName, LoadSceneMode.Additive);
+
+		while (!loading.isDone)
+		{
+			yield return new WaitForEndOfFrame();
+		}
+
+		m_TransitionAnimator.SetTrigger(m_TransitionEndAnimationTrigger);
+		m_Transitioning = false;
+	}
+
+	private IEnumerator UnloadMinigameScene(string sceneName)
+	{
+		m_TransitionAnimator.SetTrigger(m_TransitionStartAnimationTrigger);
+
+		yield return new WaitForSecondsRealtime(0.7f);
+
+		AsyncOperation loading = SceneManager.UnloadSceneAsync(sceneName, UnloadSceneOptions.None);
 
 		while (!loading.isDone)
 		{
