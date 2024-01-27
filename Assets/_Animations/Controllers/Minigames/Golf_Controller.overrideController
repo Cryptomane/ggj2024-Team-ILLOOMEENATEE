@@ -1,0 +1,17 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!221 &22100000
+AnimatorOverrideController:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: Golf_Controller
+  m_Controller: {fileID: 9100000, guid: 7153fe0f84d1c0d4ea2bd0d365a0ec88, type: 2}
+  m_Clips:
+  - m_OriginalClip: {fileID: 7400000, guid: 29a7d4af875f52d4a80d5fe44d6527c9, type: 2}
+    m_OverrideClip: {fileID: 7400000, guid: 4aa48819f0c2c0f4a94dfbbbbf524573, type: 2}
+  - m_OriginalClip: {fileID: 7400000, guid: c83ef3556c22e904e90d015a1f231f94, type: 2}
+    m_OverrideClip: {fileID: 7400000, guid: 74de1b546b6f920488e8812fafdf02cd, type: 2}
+  - m_OriginalClip: {fileID: 7400000, guid: d3b7fce22bd7a9549b26caf8e08abb19, type: 2}
+    m_OverrideClip: {fileID: 7400000, guid: 3385b6909c361da448f6b1002550c7f6, type: 2}
