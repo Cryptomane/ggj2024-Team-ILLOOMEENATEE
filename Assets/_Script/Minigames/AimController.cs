@@ -40,16 +40,11 @@ public class AimController : MonoBehaviour
 
     public float TargetValue { get; private set; }
 
-    public bool IsAiming { get; private set; }
-
-    private void Awake()
-    {
-        TargetValue = Random.Range(0.2f, 0.8f);
-    }
+    public bool IsInitialized { get; private set; }
 
     void Update()
     {
-        if (IsAiming)
+        if (IsInitialized)
         {
             currentValue = Mathf.Sin((angle * Mathf.PI) / 180);
             currentNormalizedValue = Mathf.Lerp(0, 1, (currentValue + 1) / 2f);
@@ -58,8 +53,10 @@ public class AimController : MonoBehaviour
         }
     }
 
-    public void StartAiming(int difficulty)
+    public void Initialize(float difficulty)
     {
+        TargetValue = Random.Range(0.2f, 0.8f);
+
         if (difficulty <= 1)
         {
             currentSpeed = speed;
@@ -86,17 +83,12 @@ public class AimController : MonoBehaviour
             rightValueRange.y = 1;
         }
 
-        IsAiming = true;
-    }
-
-    public void StopAiming()
-    {
-        IsAiming = false;
+        IsInitialized = true;
     }
 
     public bool CheckHit()
     {
-        if (!IsAiming)
+        if (!IsInitialized)
         {
             return false;
         }
@@ -106,7 +98,7 @@ public class AimController : MonoBehaviour
 
     public bool IsHigher()
     {
-        if (!IsAiming)
+        if (!IsInitialized)
         {
             return false;
         }

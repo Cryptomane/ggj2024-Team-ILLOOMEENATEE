@@ -8,7 +8,9 @@ public class AimMinigame : MonoBehaviour
     private AimController controller;
 
     [SerializeField]
-    private int difficulty = 1;
+    private FloatValue difficulty;
+
+    private Minigame minigame;
 
     private void OnEnable()
     {
@@ -19,21 +21,27 @@ public class AimMinigame : MonoBehaviour
     {
         InputManager.OnAHit -= OnAHit;
     }
-    private void Start()
+    private void StartMinigame(Minigame minigame)
     {
-        controller.StartAiming(difficulty);
+        this.minigame = minigame;
+
+        InitControllers();
+    }
+    private void InitControllers()
+    {
+        controller.Initialize(difficulty.Value);
     }
 
     private void OnAHit()
     {
         if (controller.CheckHit())
         {
-            Debug.Log("Aim is right on hit.");
+            minigame.AddToScore(1);
         }
-
-        difficulty++;
-
-        controller.StartAiming(difficulty);
+        else if(controller.IsHigher())
+        {
+            minigame.AddToScore(2);
+        }
     }
 
 }

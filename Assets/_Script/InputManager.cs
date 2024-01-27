@@ -70,7 +70,7 @@ public class InputManager : MonoBehaviour
 
     private static event Action m_OnBHit;
 
-    public event Action OnBHit
+    public static event Action OnBHit
     {
         add
         {
