@@ -133,7 +133,7 @@ public class MinigameManager : MonoBehaviour
 		m_CurrentState = GameState.TRANSITION;
 		m_Transitioning = true;
 		StartCoroutine(LoadMinigameScene(m_CurrentMinigame.SceneName));
-		m_Commands.Show(m_CurrentMinigame.InstructionsControlsPrefab);
+		m_Commands.Show(m_CurrentMinigame);
 	}
 
 	private void ShowResultsScreen()

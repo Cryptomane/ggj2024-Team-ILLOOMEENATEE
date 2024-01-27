@@ -1,12 +1,15 @@
+using TMPro;
 using UnityEngine;
 
 public class ControlsScreen : MonoBehaviour
 {
-	public void Show(GameObject CommandsPrefab)
+	[SerializeField] TMP_Text m_Instructions;
+	public void Show(Minigame minigame)
 	{
-		GameObject instance = GameObject.Instantiate(CommandsPrefab, transform, false);
+		GameObject instance = GameObject.Instantiate(minigame.InstructionsControlsPrefab, transform, false);
 
 		instance.transform.localPosition = Vector3.zero;
+		m_Instructions.text = minigame.InstructionsText;
 		gameObject.SetActive(true);
 	}
 

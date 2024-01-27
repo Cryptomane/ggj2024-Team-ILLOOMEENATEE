@@ -12,11 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ba9d47bbb27ed584ca89bb1cc588caed, type: 3}
   m_Name: Golf
   m_EditorClassIdentifier: 
-  m_SceneName: 
+  m_SceneName: Minigame_Golf
   m_GameName: Golf
-  m_InstructionsText: 
-  m_InstructionsControlsPrefab: {fileID: 0}
-  m_ScoreGoal: 100
+  m_InstructionsText: PUSH AT THE RIGHT TIME FOR A HOLE IN ONE
+  m_InstructionsControlsPrefab: {fileID: 2237229464809820913, guid: 96940442e4ed7f14ca1eb7224a93d9bd, type: 3}
+  m_ScoreGoal: 1
   m_Duration: 6
-  m_MinTarget: 0
-  m_MaxTarget: 0
+  m_MinTarget: 0.472
+  m_MaxTarget: 0.74

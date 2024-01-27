@@ -12,9 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ba9d47bbb27ed584ca89bb1cc588caed, type: 3}
   m_Name: WilliamTell
   m_EditorClassIdentifier: 
-  m_SceneName: 
-  m_Name: 
-  m_InstructionsText: 
-  m_InstructionsControlsPrefab: {fileID: 0}
-  m_ScoreGoal: 100
+  m_SceneName: Minigame_WilliamTell
+  m_GameName: WilliamTell
+  m_InstructionsText: PRESS AT THE RIGHT TIME TO HIT YOUR TARGET
+  m_InstructionsControlsPrefab: {fileID: 2237229464809820913, guid: e865fddf1bd027e4eb0a26f003053f69, type: 3}
+  m_ScoreGoal: 1
   m_Duration: 6
+  m_MinTarget: 0
+  m_MaxTarget: 0
