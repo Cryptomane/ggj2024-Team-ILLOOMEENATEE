@@ -1,51 +1,63 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class AimMinigame : MonoBehaviour
 {
-    [SerializeField]
-    private AimController controller;
+	[SerializeField]
+	private Animator m_Animator;
 
-    [SerializeField]
-    private FloatValue difficulty;
+	[SerializeField]
+	private AimController controller;
 
-    private Minigame minigame;
+	[SerializeField]
+	private FloatValue difficulty;
 
-    private void OnEnable()
-    {
-        InputManager.OnAHit += OnAHit;
+	private Minigame minigame;
 
-        MinigameManager.OnGameStartRequested += StartMinigame;
-    }
 
-    private void OnDisable()
-    {
-        InputManager.OnAHit -= OnAHit;
+	private int m_SuccessTrigger = Animator.StringToHash("Success");
+	private int m_FailHighTrigger = Animator.StringToHash("FailHigh");
+	private int m_FailLowTrigger = Animator.StringToHash("FailLow");
 
-        MinigameManager.OnGameStartRequested -= StartMinigame;
-    }
-    private void StartMinigame(Minigame minigame)
-    {
-        this.minigame = minigame;
+	private void OnEnable()
+	{
+		InputManager.OnAHit += OnAHit;
 
-        InitControllers();
-    }
-    private void InitControllers()
-    {
-        controller.Initialize(difficulty.Value);
-    }
+		MinigameManager.OnGameStartRequested += StartMinigame;
+	}
 
-    private void OnAHit()
-    {
-        if (controller.CheckHit())
-        {
-            minigame.AddToScore(1);
-        }
-        else if(controller.IsHigher())
-        {
-            minigame.AddToScore(2);
-        }
-    }
+	private void OnDisable()
+	{
+		InputManager.OnAHit -= OnAHit;
 
+		MinigameManager.OnGameStartRequested -= StartMinigame;
+	}
+	private void StartMinigame(Minigame minigame)
+	{
+		this.minigame = minigame;
+
+		InitControllers();
+	}
+	private void InitControllers()
+	{
+		controller.Initialize(difficulty.Value);
+	}
+
+	private void OnAHit()
+	{
+		if (controller.CheckHit())
+		{
+			minigame.AddToScore(1);
+			m_Animator.SetTrigger(m_SuccessTrigger);
+			return;
+		}
+
+		if (controller.IsHigher())
+		{
+			minigame.AddToScore(2);
+			m_Animator.SetTrigger(m_FailHighTrigger);
+			return;
+		}
+
+		m_Animator.SetTrigger(m_FailLowTrigger);
+	}
 }
