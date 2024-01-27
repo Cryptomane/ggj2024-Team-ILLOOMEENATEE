@@ -12,7 +12,7 @@ EditorBuildSettings:
     path: Assets/_Scenes/MinigameContainer.unity
     guid: f071174f7e8da15448ab11c983cfe1f0
   - enabled: 1
-    path: Assets/_Scenes/Results.unity
+    path: Assets/_Scenes/GameOver.unity
     guid: 21a81c1af88c8284a8e9214e35d42d6d
   - enabled: 1
     path: Assets/_Scenes/Minigames/Minigame_DuckHunt.unity

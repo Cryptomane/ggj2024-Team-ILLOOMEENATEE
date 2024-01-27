@@ -12,4 +12,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 424a91f82e9b1eb4482211908a767dbe, type: 3}
   m_Name: MinigameSelection
   m_EditorClassIdentifier: 
-  m_Minigames: []
+  m_Minigames:
+  - {fileID: 11400000, guid: b775f8527f140374fbb320d6bf696e6c, type: 2}
+  - {fileID: 11400000, guid: dc45c2b6e05e2f14aa32b93d2c7e0d61, type: 2}
+  - {fileID: 11400000, guid: 1d0d794a0e203e949a5a779dc7cf0b02, type: 2}
+  - {fileID: 11400000, guid: c9463553d9a22c6408e54cf56564e65e, type: 2}
+  - {fileID: 11400000, guid: 3730cbecff384cb4195b8ad3934b3887, type: 2}
+  - {fileID: 11400000, guid: 7a1e61c7efa2db3489d6c0f12768a43d, type: 2}
+  - {fileID: 11400000, guid: e5c986d3092e1a54386c0f50235396de, type: 2}
+  - {fileID: 11400000, guid: f1b5859e77efe8e49b1c2feb0f58a5d3, type: 2}
