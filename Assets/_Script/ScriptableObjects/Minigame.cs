@@ -38,11 +38,16 @@ public class Minigame : ScriptableObject
 		m_RoundScore += a;
 	}
 
-	/// <summary>
-	/// Usiamo questo per i fallimenti di diverso tipo:
-	/// </summary>
-	/// <returns>1 - Successo; 2 - Failed High; 0 - Failed Low</returns>
-	public int GetScore()
+    public void ResetScore()
+    {
+		m_RoundScore = 0;
+    }
+
+    /// <summary>
+    /// Usiamo questo per i fallimenti di diverso tipo:
+    /// </summary>
+    /// <returns>1 - Successo; 2 - Failed High; 0 - Failed Low</returns>
+    public int GetScore()
 	{
 		return m_RoundScore;
 	}

@@ -154,7 +154,8 @@ public class MinigameManager : MonoBehaviour
 		m_Timer = m_CurrentMinigame.Duration;
 		m_CurrentState = GameState.MINIGAME;
 		m_Commands.Hide();
-		m_OnGameStartRequested?.Invoke(m_CurrentMinigame);
+		m_CurrentMinigame.ResetScore();
+        m_OnGameStartRequested?.Invoke(m_CurrentMinigame);
 	}
 
 	private IEnumerator LoadMinigameScene(string sceneName)
