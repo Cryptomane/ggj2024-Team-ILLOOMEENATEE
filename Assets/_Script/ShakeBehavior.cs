@@ -5,7 +5,7 @@ using UnityEngine;
 public class ShakeBehavior : MonoBehaviour
 {
     // Transform of the GameObject you want to shake
-    public Transform transform;
+    public Transform originalTransform;
 
     // Desired duration of the shake effect
     public float shakeDuration = 0f;
@@ -16,20 +16,29 @@ public class ShakeBehavior : MonoBehaviour
     // Shake damping speed 
     public float dampingSpeed = 1.0f;
 
+    // Start time 
+    public float startTime;
+    public float timeout = 2.0f;
+
     // The initial position of the GameObject
     private Vector3 initialPosition;
 
+    public ShakeBehavior(float shakeDuration)
+    {
+        this.shakeDuration = shakeDuration;
+    }
+
     void Awake()
     {
-        if (transform == null)
+        if (originalTransform == null)
         {
-            transform = this.GetComponent<Transform>();
+            originalTransform = this.GetComponent<Transform>();
         }
     }
     // Start is called before the first frame update
     void Start()
     {
-        initialPosition = transform.localPosition;
+        initialPosition = originalTransform.localPosition;
     }
 
     // Update is called once per frame
@@ -37,18 +46,19 @@ public class ShakeBehavior : MonoBehaviour
     {
         if (shakeDuration > 0)
         {
-            transform.localPosition = initialPosition + (Vector3)Random.insideUnitCircle * shakeMagnitude;
+            originalTransform.localPosition = initialPosition + (Vector3)Random.insideUnitCircle * shakeMagnitude;
             shakeDuration -= Time.deltaTime * dampingSpeed;
         }
         else
         {
             shakeDuration = 0f;
-            transform.localPosition = initialPosition;
+            originalTransform.localPosition = initialPosition;
         }
     }
 
     public void TriggerShake()
     {
-        shakeDuration = 2.0f;
+        startTime=Time.time;
+        shakeDuration = Mathf.Lerp( .5f, timeout,(Time.time - startTime)/60f);
     }
 }
