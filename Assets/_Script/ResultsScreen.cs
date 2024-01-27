@@ -4,7 +4,9 @@ using UnityEngine;
 
 public class ResultsScreen : MonoBehaviour
 {
-	[SerializeField] TMP_Text m_Score;
+	[SerializeField] GameObject m_Score;
+	[SerializeField] TMP_Text m_PointsCurrent;
+	[SerializeField] TMP_Text m_Goal;
 	[SerializeField] Animator m_Animator;
 	[SerializeField] GameObject[] m_Lives;
 
@@ -59,11 +61,13 @@ public class ResultsScreen : MonoBehaviour
 
 		if (minigame.ScoreGoal != 1)
 		{
-			m_Score.text = minigame.GetScore().ToString();
+			m_Score.SetActive(true);
+			m_PointsCurrent.text = minigame.GetScore().ToString();
+			m_Goal.text = minigame.ScoreGoal.ToString();
 		}
 		else
 		{
-			m_Score.text = "";
+			m_Score.SetActive(false);
 		}
 	}
 
