@@ -61,6 +61,7 @@ public class MinigameManager : MonoBehaviour
 		m_Loops = 0;
 		m_Difficulty.Value = 1;
 		m_CurrentState = GameState.INTRO;
+		ShowIntro();
 	}
 
 	private void OnDestroy()
