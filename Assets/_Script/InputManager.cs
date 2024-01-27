@@ -102,27 +102,27 @@ public class InputManager : MonoBehaviour
 
     void Update()
     {
-        if(Input.GetKeyDown(KeyCode.RightArrow) || Input.GetAxis("Horizontal") > 0)
+        if(Input.GetKeyDown(KeyCode.RightArrow) || Input.GetKeyDown(KeyCode.Joystick1Button5))
         {
 			m_RightPressed = true;
             m_OnRightArrowHit?.Invoke();
         }
-        else if (Input.GetKeyDown(KeyCode.LeftArrow) || Input.GetAxis("Horizontal") < 0)
+        else if (Input.GetKeyDown(KeyCode.LeftArrow) || Input.GetKeyDown(KeyCode.Joystick1Button4))
         {
 			m_LeftPressed = true;
             m_OnLeftArrowHit?.Invoke();
         }
-        else if (Input.GetKeyDown(KeyCode.Z) || Input.GetKeyDown(KeyCode.Joystick1Button0))
+        else if (Input.GetKeyDown(KeyCode.Z) || Input.GetKeyDown(KeyCode.Joystick1Button3))
         {
 			m_APressed = true;
             m_OnAHit?.Invoke();
         }
-        else if (Input.GetKeyDown(KeyCode.X) || Input.GetKeyDown(KeyCode.Joystick1Button1))
+        else if (Input.GetKeyDown(KeyCode.X) || Input.GetKeyDown(KeyCode.Joystick1Button1) || Input.GetKeyDown(KeyCode.Joystick1Button2))
         {
 			m_BPressed = true;
             m_OnBHit?.Invoke();
         }
-        else if (Input.GetKeyDown(KeyCode.C) || Input.GetKeyDown(KeyCode.Joystick1Button2))
+        else if (Input.GetKeyDown(KeyCode.C) || Input.GetKeyDown(KeyCode.Joystick1Button0))
         {
 			m_CPressed = true;
             m_OnCHit?.Invoke();
