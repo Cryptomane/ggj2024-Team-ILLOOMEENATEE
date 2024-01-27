@@ -8,10 +8,12 @@ public class Minigame : ScriptableObject
 	[SerializeField] private string m_InstructionsText = "";
 	[SerializeField] private GameObject m_InstructionsControlsPrefab;
 	[SerializeField] private int m_ScoreGoal = 100;
+	[SerializeField] private float m_Duration = 6f;
 
 	public string SceneName => m_SceneName;
 	public string Name => m_Name;
 	public string InstructionsText => m_InstructionsText;
 	public GameObject InstructionsControlsPrefab => m_InstructionsControlsPrefab;
 	public int ScoreGoal  => m_ScoreGoal;
+	public float Duration  => m_ScoreGoal;
 }
