@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class LeftRightMinigame : MonoBehaviour
 {
@@ -14,6 +15,14 @@ public class LeftRightMinigame : MonoBehaviour
     [SerializeField]
     private FloatValue difficulty;
 
+    [SerializeField]
+    private UnityEvent onLeft;
+    [SerializeField]
+    private UnityEvent onRight;
+    [SerializeField]
+    private UnityEvent onGameEnded;
+
+
     [Header("Read-only")]
 
     [SerializeField]
@@ -21,7 +30,7 @@ public class LeftRightMinigame : MonoBehaviour
 
     private Minigame minigame;
 
-    private bool isLastPressedLeft;
+    private bool isLastPressedLeft = true;
 
     private void OnEnable()
     {
@@ -76,9 +85,12 @@ public class LeftRightMinigame : MonoBehaviour
 
     private void OnLeftArrowHit()
     {
-        if (minigame.GetScore() == 0 || !isLastPressedLeft)
+        if (!isLastPressedLeft)
         {
             minigame.AddToScore(1);
+            onLeft?.Invoke();
+
+            CheckEnd();
         }
 
         isLastPressedLeft = true;
@@ -86,11 +98,24 @@ public class LeftRightMinigame : MonoBehaviour
 
     private void OnRightArrowHit()
     {
-        if (minigame.GetScore() == 0 || isLastPressedLeft)
+        if (isLastPressedLeft)
         {
             minigame.AddToScore(1);
+            onRight?.Invoke();
+
+            CheckEnd();
         }
 
         isLastPressedLeft = false;
+    }
+
+    private void CheckEnd()
+    {
+        if(minigame.GetScore() >= minigame.ScoreGoal)
+        {
+            onGameEnded?.Invoke();
+
+            enabled = false;
+        }
     }
 }

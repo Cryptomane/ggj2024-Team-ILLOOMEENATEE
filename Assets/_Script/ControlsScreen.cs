@@ -15,7 +15,7 @@ public class ControlsScreen : MonoBehaviour
 
 	public void Hide()
 	{
-		Destroy(transform.GetChild(0));
+		Destroy(transform.GetChild(1).gameObject);
 		gameObject.SetActive(false);
 	}
 }
