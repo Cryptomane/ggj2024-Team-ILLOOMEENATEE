@@ -152,6 +152,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d9d7eb30ea36b9a42944a107a63ee869, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  m_Animator: {fileID: 1494324178}
   controller: {fileID: 1207178158}
   difficulty: {fileID: 11400000, guid: f2bbe0f1c427f1246996f6126f31a549, type: 2}
 --- !u!4 &36762591

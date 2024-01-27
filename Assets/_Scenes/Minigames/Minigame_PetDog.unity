@@ -167,7 +167,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 42757d2d1ae5b5d4ba49b8885b7a8ce5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_Animator: {fileID: 0}
+  m_Animator: {fileID: 13440580}
   decreaseScoreTime: 0.5
   decreaseScoreTimeMultiplier: 0.8
   difficulty: {fileID: 11400000, guid: f2bbe0f1c427f1246996f6126f31a549, type: 2}

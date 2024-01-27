@@ -36,7 +36,10 @@ public class LeftRightMinigame : MonoBehaviour
 
 	private int m_SuccessTrigger = Animator.StringToHash("Success");
 
-	private void OnEnable()
+    public bool GameStarted { get; private set; }
+
+
+    private void OnEnable()
     {
         InputManager.OnLeftArrowHit += OnLeftArrowHit;
         InputManager.OnRightArrowHit += OnRightArrowHit;
@@ -59,6 +62,8 @@ public class LeftRightMinigame : MonoBehaviour
         this.minigame = minigame;
 
         Initialize();
+
+        GameStarted = true;
 
         StartCoroutine(DecreaseScore());
     }
@@ -89,28 +94,34 @@ public class LeftRightMinigame : MonoBehaviour
 
     private void OnLeftArrowHit()
     {
-        if (!isLastPressedLeft)
+        if (GameStarted)
         {
-            minigame.AddToScore(1);
-            onLeft?.Invoke();
+            if (!isLastPressedLeft)
+            {
+                minigame.AddToScore(1);
+                onLeft?.Invoke();
 
-            CheckEnd();
+                CheckEnd();
+            }
+
+            isLastPressedLeft = true;
         }
-
-        isLastPressedLeft = true;
     }
 
     private void OnRightArrowHit()
     {
-        if (isLastPressedLeft)
+        if (GameStarted)
         {
-            minigame.AddToScore(1);
-            onRight?.Invoke();
+            if (isLastPressedLeft)
+            {
+                minigame.AddToScore(1);
+                onRight?.Invoke();
 
-            CheckEnd();
+                CheckEnd();
+            }
+
+            isLastPressedLeft = false;
         }
-
-        isLastPressedLeft = false;
     }
 
     private void CheckEnd()

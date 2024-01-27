@@ -13,8 +13,9 @@ public class AimMinigame : MonoBehaviour
 
 	private Minigame minigame;
 
+    public bool GameStarted { get; private set; }
 
-	private int m_SuccessTrigger = Animator.StringToHash("Success");
+    private int m_SuccessTrigger = Animator.StringToHash("Success");
 	private int m_FailHighTrigger = Animator.StringToHash("FailHigh");
 	private int m_FailLowTrigger = Animator.StringToHash("FailLow");
 
@@ -36,6 +37,8 @@ public class AimMinigame : MonoBehaviour
 		this.minigame = minigame;
 
 		InitControllers();
+
+		GameStarted = true;
 	}
 	private void InitControllers()
 	{
@@ -44,20 +47,23 @@ public class AimMinigame : MonoBehaviour
 
 	private void OnAHit()
 	{
-		if (controller.CheckHit())
+		if (GameStarted)
 		{
-			minigame.AddToScore(1);
-			m_Animator.SetTrigger(m_SuccessTrigger);
-			return;
-		}
+			if (controller.CheckHit())
+			{
+				minigame.AddToScore(1);
+				m_Animator.SetTrigger(m_SuccessTrigger);
+				return;
+			}
 
-		if (controller.IsHigher())
-		{
-			minigame.AddToScore(2);
-			m_Animator.SetTrigger(m_FailHighTrigger);
-			return;
-		}
+			if (controller.IsHigher())
+			{
+				minigame.AddToScore(2);
+				m_Animator.SetTrigger(m_FailHighTrigger);
+				return;
+			}
 
-		m_Animator.SetTrigger(m_FailLowTrigger);
+			m_Animator.SetTrigger(m_FailLowTrigger);
+		}
 	}
 }

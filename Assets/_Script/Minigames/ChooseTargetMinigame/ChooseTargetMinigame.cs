@@ -28,6 +28,8 @@ public class ChooseTargetMinigame : MonoBehaviour
 
     private int correctControllerIndex;
 
+    public bool GameStarted { get; private set; }
+
     private void OnEnable()
     {
         InputManager.OnAHit += OnAHit;
@@ -63,13 +65,16 @@ public class ChooseTargetMinigame : MonoBehaviour
 
     private void CheckHit(int controllerIndex)
     {
-        if (controllerIndex == correctControllerIndex)
+        if (GameStarted)
         {
-            minigame.AddToScore(1);
-        }
-        else
-        {
-            minigame.AddToScore(0);
+            if (controllerIndex == correctControllerIndex)
+            {
+                minigame.AddToScore(1);
+            }
+            else
+            {
+                minigame.AddToScore(0);
+            }
         }
     }
 
@@ -78,6 +83,8 @@ public class ChooseTargetMinigame : MonoBehaviour
         this.minigame = minigame;
 
         InitTargets();
+
+        GameStarted = true;
     }
 
     private void InitTargets()

@@ -34,6 +34,8 @@ public class HitTargetMinigame : MonoBehaviour
 
     private Minigame minigame;
 
+    public bool GameStarted { get; private set; }
+
     private void OnEnable()
     {
         InputManager.OnAHit += OnAHit;
@@ -69,9 +71,12 @@ public class HitTargetMinigame : MonoBehaviour
 
     private void CheckHit(HitTargetController controller)
     {
-        if (controller.CheckHit())
+        if (GameStarted)
         {
-            minigame.AddToScore(1);
+            if (controller.CheckHit())
+            {
+                minigame.AddToScore(1);
+            }
         }
     }
 
@@ -82,6 +87,8 @@ public class HitTargetMinigame : MonoBehaviour
         InitTargets();
 
         InitControllers();
+
+        GameStarted = true;
 
         StartCoroutine(SpawnTargets());
     }
