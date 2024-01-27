@@ -2,7 +2,7 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 
-[CreateAssetMenu(fileName = "MinigameSelection", menuName = "ILLOOMEENATEE/MinigameSelection", order = -10)]
+[CreateAssetMenu(fileName = "MinigameSelection", menuName = "ILLOOMEENATEE/MinigameSelection", order = 0)]
 public class MinigameSelection : ScriptableObject
 {
 	[SerializeField] private List<Minigame> m_Minigames;

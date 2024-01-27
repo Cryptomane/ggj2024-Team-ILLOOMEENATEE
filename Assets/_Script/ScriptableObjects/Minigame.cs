@@ -1,6 +1,6 @@
 using UnityEngine;
 
-[CreateAssetMenu(fileName = "Minigame_A", menuName = "ILLOOMEENATEE/Minigame", order = -10)]
+[CreateAssetMenu(fileName = "Minigame_A", menuName = "ILLOOMEENATEE/Minigame", order = 0)]
 public class Minigame : ScriptableObject
 {
 	[SerializeField] private string m_SceneName = "";
