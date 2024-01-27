@@ -22,13 +22,13 @@ public class MinigameManager : MonoBehaviour
 	[SerializeField] private MinigameSelection m_Minigames;
 
 	[Header("Difficulty Settings")]
-	[SerializeField] private float m_Difficulty = 1.0f;
+	[SerializeField] private FloatValue m_Difficulty;
 	[SerializeField] private float m_IncreaseFactorDifficulty = 0.5f;
 
 	[Header("Game Elements")]
-	[SerializeField] private GameObject m_RoundIntro;
+	[SerializeField] private RoundIntroScreen m_RoundIntro;
 	[SerializeField] private ControlsScreen m_Commands;
-	[SerializeField] private GameObject m_Results;
+	[SerializeField] private ResultsScreen m_Results;
 
 	private static event Action<Minigame> m_OnGameStartRequested;
 
@@ -53,6 +53,14 @@ public class MinigameManager : MonoBehaviour
 
 	private int m_TransitionStartAnimationTrigger = Animator.StringToHash("start");
 	private int m_TransitionEndAnimationTrigger = Animator.StringToHash("end");
+	private int m_Loops;
+
+	private void Start()
+	{
+		m_Results.OnOutOfLives += HandleOnOutOfLives;
+		m_Loops = 0;
+		m_Difficulty.Value = 1;
+	}
 
 	private void Update()
 	{
@@ -85,20 +93,39 @@ public class MinigameManager : MonoBehaviour
 				m_Timer -= Time.deltaTime;
 				break;
 			case GameState.RESULT:
+				if (InputManager.GetKeyDown(InputManager.Key.ANY))
+				{
+					m_NextState = GameState.CONTROLS;
+				}
 				break;
 			case GameState.GAME_OVER:
+					SceneManager.LoadScene("GameOver");
 				break;
 			default:
 				break;
 		}
 	}
 
+	private void ShowIntro()
+	{
+		m_RoundIntro.Show(m_Loops);
+	}
+
 	private void ShowControlsScreen()
 	{
+		m_CurrentMinigame = m_Minigames.GetNextMinigame();
+		if(m_CurrentMinigame == null)
+		{
+			m_Loops++;
+			m_Difficulty.Value += m_IncreaseFactorDifficulty;
+			m_NextState = GameState.INTRO;
+			ShowIntro();
+			return;
+		}
+
 		m_NextState = GameState.CONTROLS;
 		m_CurrentState = GameState.TRANSITION;
 		m_Transitioning = true;
-		m_CurrentMinigame = m_Minigames.GetNextMinigame();
 		StartCoroutine(LoadMinigameScene(m_CurrentMinigame.SceneName));
 		m_Commands.Show(m_CurrentMinigame.InstructionsControlsPrefab);
 	}
@@ -109,7 +136,11 @@ public class MinigameManager : MonoBehaviour
 		m_CurrentState = GameState.TRANSITION;
 		m_Transitioning = true;
 		StartCoroutine(UnloadMinigameScene(m_CurrentMinigame.SceneName));
-		
+	}
+
+	private void HandleOnOutOfLives()
+	{
+		m_NextState = GameState.GAME_OVER;
 	}
 
 	private void StartMinigame()

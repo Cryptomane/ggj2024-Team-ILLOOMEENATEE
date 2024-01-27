@@ -6,6 +6,9 @@ public class ResultsScreen : MonoBehaviour
 {
 	[SerializeField] TMP_Text m_Score;
 	[SerializeField] Animator m_Animator;
+	[SerializeField] GameObject[] m_Lives;
+
+	private static int m_CurrentLives = 3;
 
 	private event Action m_OnOutOfLives;
 
@@ -24,11 +27,35 @@ public class ResultsScreen : MonoBehaviour
 
 	private int m_SuccessAnimParam = Animator.StringToHash("success");
 	private int m_FailAnimParam = Animator.StringToHash("fail");
+	private int m_LivesAnimParam = Animator.StringToHash("fail");
+
+	private void Awake()
+	{
+		m_CurrentLives = 3;
+	}
 
 	public void Show(Minigame minigame)
 	{
 		gameObject.SetActive(true);
-		m_Animator.SetTrigger(minigame.Success() ? m_SuccessAnimParam : m_FailAnimParam);
+		
+		for (int i=0; i < m_Lives.Length; i++)
+		{
+			m_Lives[i].SetActive(i < m_CurrentLives);
+		}
+
+		bool success = minigame.Success();
+
+		if(!success)
+		{
+			m_CurrentLives--;
+			
+			if(m_CurrentLives == 0)
+			{
+				m_OnOutOfLives?.Invoke();
+			}
+		}
+
+		m_Animator.SetTrigger(success ? m_SuccessAnimParam : m_FailAnimParam);
 
 		if (minigame.ScoreGoal != 1)
 		{
@@ -42,7 +69,6 @@ public class ResultsScreen : MonoBehaviour
 
 	public void Hide()
 	{
-		Destroy(transform.GetChild(0));
 		gameObject.SetActive(false);
 	}
 }
