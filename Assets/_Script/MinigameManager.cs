@@ -60,6 +60,12 @@ public class MinigameManager : MonoBehaviour
 		m_Results.OnOutOfLives += HandleOnOutOfLives;
 		m_Loops = 0;
 		m_Difficulty.Value = 1;
+		m_CurrentState = GameState.INTRO;
+	}
+
+	private void OnDestroy()
+	{
+		m_Results.OnOutOfLives -= HandleOnOutOfLives;
 	}
 
 	private void Update()
