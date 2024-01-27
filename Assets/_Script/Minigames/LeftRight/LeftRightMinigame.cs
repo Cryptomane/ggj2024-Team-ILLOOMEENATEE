@@ -5,7 +5,9 @@ using UnityEngine.Events;
 
 public class LeftRightMinigame : MonoBehaviour
 {
-    [SerializeField]
+	[SerializeField]
+	private Animator m_Animator;
+	[SerializeField]
     private float decreaseScoreTime = 0.5f;
     [SerializeField]
     private float decreaseScoreTimeMultiplier = 0.8f;
@@ -32,7 +34,9 @@ public class LeftRightMinigame : MonoBehaviour
 
     private bool isLastPressedLeft = true;
 
-    private void OnEnable()
+	private int m_SuccessTrigger = Animator.StringToHash("Success");
+
+	private void OnEnable()
     {
         InputManager.OnLeftArrowHit += OnLeftArrowHit;
         InputManager.OnRightArrowHit += OnRightArrowHit;
@@ -116,6 +120,7 @@ public class LeftRightMinigame : MonoBehaviour
             onGameEnded?.Invoke();
 
             enabled = false;
+			m_Animator.SetTrigger(m_SuccessTrigger);
         }
     }
 }
