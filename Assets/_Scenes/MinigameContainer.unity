@@ -980,7 +980,7 @@ Camera:
   field of view: 60
   orthographic: 1
   orthographic size: 5
-  m_Depth: 0
+  m_Depth: 80
   m_CullingMask:
     serializedVersion: 2
     m_Bits: 4294967295
@@ -1404,7 +1404,7 @@ Camera:
   field of view: 60
   orthographic: 1
   orthographic size: 5
-  m_Depth: 0
+  m_Depth: 90
   m_CullingMask:
     serializedVersion: 2
     m_Bits: 4294967295
@@ -1579,7 +1579,6 @@ GameObject:
   m_Component:
   - component: {fileID: 695269439}
   - component: {fileID: 695269438}
-  - component: {fileID: 695269437}
   - component: {fileID: 695269436}
   - component: {fileID: 695269440}
   m_Layer: 0
@@ -1633,14 +1632,6 @@ MonoBehaviour:
     mipBias: 0
     varianceClampScale: 0.9
     contrastAdaptiveSharpening: 0
---- !u!81 &695269437
-AudioListener:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 695269434}
-  m_Enabled: 1
 --- !u!20 &695269438
 Camera:
   m_ObjectHideFlags: 0
@@ -1677,7 +1668,7 @@ Camera:
   field of view: 60
   orthographic: 1
   orthographic size: 5
-  m_Depth: 5
+  m_Depth: 100
   m_CullingMask:
     serializedVersion: 2
     m_Bits: 4294967295
@@ -1934,7 +1925,7 @@ Camera:
   field of view: 60
   orthographic: 1
   orthographic size: 5
-  m_Depth: 0
+  m_Depth: 70
   m_CullingMask:
     serializedVersion: 2
     m_Bits: 4294967295

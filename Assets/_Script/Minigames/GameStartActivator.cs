@@ -15,7 +15,7 @@ public class GameStartActivator : MonoBehaviour
 
     private void OnDisable()
     {
-        MinigameManager.OnGameStartRequested += OnGameStarted;
+        MinigameManager.OnGameStartRequested -= OnGameStarted;
 
     }
 

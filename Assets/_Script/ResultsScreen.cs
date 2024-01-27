@@ -7,7 +7,6 @@ public class ResultsScreen : MonoBehaviour
 	[SerializeField] GameObject m_Score;
 	[SerializeField] TMP_Text m_PointsCurrent;
 	[SerializeField] TMP_Text m_Goal;
-	[SerializeField] Animator m_Animator;
 	[SerializeField] GameObject[] m_Lives;
 
 	private static int m_CurrentLives = 3;
@@ -26,10 +25,6 @@ public class ResultsScreen : MonoBehaviour
 			m_OnOutOfLives -= value;
 		}
 	}
-
-	private int m_SuccessAnimParam = Animator.StringToHash("success");
-	private int m_FailAnimParam = Animator.StringToHash("fail");
-	private int m_LivesAnimParam = Animator.StringToHash("fail");
 
 	private void Awake()
 	{
@@ -56,8 +51,6 @@ public class ResultsScreen : MonoBehaviour
 				m_OnOutOfLives?.Invoke();
 			}
 		}
-
-		m_Animator.SetTrigger(success ? m_SuccessAnimParam : m_FailAnimParam);
 
 		if (minigame.ScoreGoal != 1)
 		{

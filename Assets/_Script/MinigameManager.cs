@@ -83,7 +83,8 @@ public class MinigameManager : MonoBehaviour
 				if (InputManager.GetKeyDown(InputManager.Key.ANY))
 				{
 					m_Minigames.InitRound();
-					ShowControlsScreen();
+
+                    ShowControlsScreen();
 				}
 				break;
 			case GameState.CONTROLS:
@@ -95,15 +96,15 @@ public class MinigameManager : MonoBehaviour
 			case GameState.MINIGAME:
 				if (m_Timer <= 0)
 				{
-					ShowResultsScreen();
+                    ShowResultsScreen();
 				}
 				m_Timer -= Time.deltaTime;
 				break;
 			case GameState.RESULT:
 				if (InputManager.GetKeyDown(InputManager.Key.ANY))
 				{
-					m_NextState = GameState.CONTROLS;
-				}
+					ShowControlsScreen();
+                }
 				break;
 			case GameState.GAME_OVER:
 					SceneManager.LoadScene("GameOver");
@@ -113,12 +114,39 @@ public class MinigameManager : MonoBehaviour
 		}
 	}
 
+	public void ShowIntroPanel()
+	{
+        if (m_CurrentState == GameState.RESULT)
+        {
+            HideResults();
+        }
+
+		m_CurrentState = GameState.INTRO;
+
+        ShowIntro();
+    }
+
 	private void ShowIntro()
 	{
 		m_RoundIntro.Show(m_Loops);
 	}
 
-	private void ShowControlsScreen()
+    private void HideIntro()
+    {
+        m_RoundIntro.Hide();
+    }
+
+    private void ShowCommands()
+    {
+        m_Commands.Show(m_CurrentMinigame);
+    }
+
+    private void HideCommands()
+    {
+        m_Commands.Hide();
+    }
+
+    private void ShowControlsScreen()
 	{
 		m_CurrentMinigame = m_Minigames.GetNextMinigame();
 		if(m_CurrentMinigame == null)
@@ -126,23 +154,43 @@ public class MinigameManager : MonoBehaviour
 			m_Loops++;
 			m_Difficulty.Value += m_IncreaseFactorDifficulty;
 			m_NextState = GameState.INTRO;
-			ShowIntro();
+            ShowIntroPanel();
 			return;
 		}
+
+        if (m_CurrentState == GameState.INTRO)
+        {
+            StartCoroutine(WaitAndExecute(HideIntro, 0.7f));
+        }
+        else if (m_CurrentState == GameState.RESULT)
+		{
+            StartCoroutine(WaitAndExecute(HideResults, 0.7f));
+        }
 
 		m_NextState = GameState.CONTROLS;
 		m_CurrentState = GameState.TRANSITION;
 		m_Transitioning = true;
 		StartCoroutine(LoadMinigameScene(m_CurrentMinigame.SceneName));
-		m_Commands.Show(m_CurrentMinigame);
-	}
+        StartCoroutine(WaitAndExecute(ShowCommands, 0.7f));
+    }
 
-	private void ShowResultsScreen()
+    private void ShowResults()
+    {
+        m_Results.Show(m_CurrentMinigame);
+    }
+
+    private void HideResults()
+    {
+        m_Results.Hide();
+    }
+
+    private void ShowResultsScreen()
 	{
 		m_NextState = GameState.RESULT;
 		m_CurrentState = GameState.TRANSITION;
 		m_Transitioning = true;
 		StartCoroutine(UnloadMinigameScene(m_CurrentMinigame.SceneName));
+		StartCoroutine(WaitAndExecute(ShowResults, 0.7f));
 	}
 
 	private void HandleOnOutOfLives()
@@ -152,11 +200,19 @@ public class MinigameManager : MonoBehaviour
 
 	private void StartMinigame()
 	{
+		HideCommands();
+
 		m_Timer = m_CurrentMinigame.Duration;
 		m_CurrentState = GameState.MINIGAME;
-		m_Commands.Hide();
 		m_CurrentMinigame.ResetScore();
         m_OnGameStartRequested?.Invoke(m_CurrentMinigame);
+	}
+
+	private IEnumerator WaitAndExecute(Action action, float waitTime)
+	{
+		yield return new WaitForSeconds(waitTime);
+
+		action?.Invoke();
 	}
 
 	private IEnumerator LoadMinigameScene(string sceneName)
@@ -164,9 +220,10 @@ public class MinigameManager : MonoBehaviour
 		m_TransitionAnimator.SetTrigger(m_TransitionStartAnimationTrigger);
 
 		yield return new WaitForSecondsRealtime(0.7f);
+
 		AsyncOperation loading = SceneManager.LoadSceneAsync(sceneName, LoadSceneMode.Additive);
 
-		while (!loading.isDone)
+        while (!loading.isDone)
 		{
 			yield return new WaitForEndOfFrame();
 		}
