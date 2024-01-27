@@ -14,15 +14,17 @@ public class MinigameSelection : ScriptableObject
 		m_AvailableMinigames = new List<Minigame>(m_Minigames);
 	}
 
-	public bool GetNextMinigame(out Minigame minigame)
+	public Minigame GetNextMinigame()
 	{
 		if(m_AvailableMinigames.Count == 0)
 		{
-			minigame = null;
-			return false;
+			return null;
 		}
 
-		minigame = m_AvailableMinigames[Random.Range(0, m_AvailableMinigames.Count)];
-		return true;
+		int index = Random.Range(0, m_AvailableMinigames.Count);
+
+		Minigame minigame = m_AvailableMinigames[index];
+		m_AvailableMinigames.RemoveAt(index);
+		return minigame;
 	}
 }
