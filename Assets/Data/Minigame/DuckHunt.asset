@@ -13,8 +13,10 @@ MonoBehaviour:
   m_Name: DuckHunt
   m_EditorClassIdentifier: 
   m_SceneName: 
-  m_Name: 
+  m_GameName: 
   m_InstructionsText: 
   m_InstructionsControlsPrefab: {fileID: 0}
-  m_ScoreGoal: 100
+  m_ScoreGoal: 5
   m_Duration: 6
+  m_MinTarget: 0
+  m_MaxTarget: 0
