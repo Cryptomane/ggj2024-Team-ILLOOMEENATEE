@@ -14,7 +14,7 @@ public class ShakeBehavior : MonoBehaviour
     public float shakeMagnitude = 0.7f;
 
     // Shake damping speed 
-    public  float dampingSpeed = 1.0f;
+    public float dampingSpeed = 1.0f;
 
     // The initial position of the GameObject
     private Vector3 initialPosition;
@@ -37,7 +37,7 @@ public class ShakeBehavior : MonoBehaviour
     {
         if (shakeDuration > 0)
         {
-            transform.localPosition = initialPosition + (Vector3) Random.insideUnitCircle * shakeMagnitude;
+            transform.localPosition = initialPosition + (Vector3)Random.insideUnitCircle * shakeMagnitude;
             shakeDuration -= Time.deltaTime * dampingSpeed;
         }
         else
