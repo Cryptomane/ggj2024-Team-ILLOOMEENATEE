@@ -86,23 +86,23 @@ public class InputManager : MonoBehaviour
 
     void Update()
     {
-        if(Input.GetKeyDown(KeyCode.RightArrow))
+        if(Input.GetKeyDown(KeyCode.RightArrow) || Input.GetAxis("Horizontal") > 0)
         {
             m_OnRightArrowHit?.Invoke();
         }
-        else if (Input.GetKeyDown(KeyCode.LeftArrow))
+        else if (Input.GetKeyDown(KeyCode.LeftArrow) || Input.GetAxis("Horizontal") < 0)
         {
             m_OnLeftArrowHit?.Invoke();
         }
-        else if (Input.GetKeyDown(KeyCode.Z))
+        else if (Input.GetKeyDown(KeyCode.Z) || Input.GetKeyDown(KeyCode.Joystick1Button0))
         {
             m_OnAHit?.Invoke();
         }
-        else if (Input.GetKeyDown(KeyCode.X))
+        else if (Input.GetKeyDown(KeyCode.X) || Input.GetKeyDown(KeyCode.Joystick1Button1))
         {
             m_OnBHit?.Invoke();
         }
-        else if (Input.GetKeyDown(KeyCode.C))
+        else if (Input.GetKeyDown(KeyCode.C) || Input.GetKeyDown(KeyCode.Joystick1Button2))
         {
             m_OnCHit?.Invoke();
         }
