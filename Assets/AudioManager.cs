@@ -10,32 +10,44 @@ public class AudioManager : MonoBehaviour
 
     public void playMinigame() 
     {
+		if (m_minigameSound == null)
+			return;
         m_minigameSound.Play();
     }
     
     public void stopMinigame() 
     {
-        m_minigameSound.Stop();
+		if (m_minigameSound == null)
+			return;
+		m_minigameSound.Stop();
     }
 
     public void playResults() 
     {
-        m_resultsSound.Play();
+		if (m_resultsSound == null)
+			return;
+		m_resultsSound.Play();
     }
 
     public void stopResults()
     {
-        m_resultsSound.Stop();
+		if (m_resultsSound == null)
+			return;
+		m_resultsSound.Stop();
     }
 
     public void playCommand()
     {
-        m_commandSound.Play();
+		if (m_commandSound == null)
+			return;
+		m_commandSound.Play();
     }
 
     public void stopCommand()
     {
-        m_commandSound.Stop();
+		if (m_commandSound == null)
+			return;
+		m_commandSound.Stop();
     }
 
 }

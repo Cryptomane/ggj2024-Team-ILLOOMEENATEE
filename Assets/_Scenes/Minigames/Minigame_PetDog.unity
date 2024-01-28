@@ -169,7 +169,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Animator: {fileID: 13440580}
   decreaseScoreTime: 0.5
-  decreaseScoreTimeMultiplier: 0.8
   difficulty: {fileID: 11400000, guid: f2bbe0f1c427f1246996f6126f31a549, type: 2}
   onLeft:
     m_PersistentCalls:
@@ -1741,8 +1740,8 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: 2bcbddd468ec55347ac505530b83b3f4, type: 3}
   m_PlayOnAwake: 1
-  m_Volume: 0.42
-  m_Pitch: 0.22
+  m_Volume: 1
+  m_Pitch: 0.5
   Loop: 0
   Mute: 0
   Spatialize: 0
