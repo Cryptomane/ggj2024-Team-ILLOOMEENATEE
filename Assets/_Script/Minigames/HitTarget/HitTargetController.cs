@@ -96,6 +96,7 @@ public class HitTargetController : MonoBehaviour
         {
             if(Vector3.Distance(crosshair.position, targets[i].position) < hitRadius)
             {
+				targets[i].GetComponent<FryMe>().Ded();
                 hits++;
             }
         }
