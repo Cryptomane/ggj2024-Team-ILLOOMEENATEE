@@ -101,6 +101,8 @@ public class ChooseTargetMinigame : MonoBehaviour
                     break;
             }
 
+            GameStarted = false;
+
             StartCoroutine(MoveObject(dest));
         }
     }

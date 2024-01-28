@@ -1303,7 +1303,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   targetTemplate: {fileID: 1654523268}
-  m_animator: {fileID: 0}
+  m_animator: {fileID: 2100524147}
   targetsCount: 10
   minSpawnTime: 0.2
   maxSpawnTime: 1.5
