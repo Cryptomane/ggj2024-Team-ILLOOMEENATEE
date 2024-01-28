@@ -20,6 +20,16 @@ public class ChooseTargetMinigame : MonoBehaviour
     [Space]
 
     [SerializeField]
+    private float movingObjectSpeed = 10;
+
+    [SerializeField]
+    private Transform movingObject;
+    [SerializeField]
+    private GameObject explosion;
+
+    [Space]
+
+    [SerializeField]
     private FloatValue difficulty;
 
     private Minigame minigame;
@@ -75,7 +85,55 @@ public class ChooseTargetMinigame : MonoBehaviour
             {
                 minigame.AddToScore(0);
             }
+
+            Vector3 dest;
+
+            switch(controllerIndex)
+            {
+                case 0:
+                    dest = targetItemsA[0].parent.position;
+                    break;
+                case 1:
+                    dest = targetItemsB[0].parent.position;
+                    break;
+                default:
+                    dest = targetItemsC[0].parent.position;
+                    break;
+            }
+
+            StartCoroutine(MoveObject(dest));
         }
+    }
+
+    private IEnumerator MoveObject(Vector3 destination)
+    {
+        Vector3 origin = movingObject.transform.position;
+
+        float timer = 0;
+        while(timer < 1)
+        {
+            movingObject.position = Vector3.Lerp(origin, destination, timer);
+
+            yield return null;
+
+            timer += movingObjectSpeed * Time.deltaTime;
+        }
+
+        movingObject.position = destination;
+
+        Explode();
+    }
+
+    private void Explode()
+    {
+        explosion.SetActive(true);
+    }
+
+    private IEnumerator CountDownExplosion(Minigame minigame)
+    {
+        yield return new WaitForSeconds(minigame.Duration);
+
+        Explode();
     }
 
     private void StartMinigame(Minigame minigame)
@@ -85,6 +143,8 @@ public class ChooseTargetMinigame : MonoBehaviour
         InitTargets();
 
         GameStarted = true;
+
+        StartCoroutine(CountDownExplosion(minigame));
     }
 
     private void InitTargets()
