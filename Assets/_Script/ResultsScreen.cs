@@ -48,8 +48,7 @@ public class ResultsScreen : MonoBehaviour
 		{
 			m_CurrentLives--;
 
-            m_Lives[m_CurrentLives - 1].GetComponent<Animator>().SetTrigger("vai");
-            //m_Lives[m_CurrentLives-1].GetComponentInChildren<GameObject>().SetActive(true);
+            m_Lives[m_CurrentLives].GetComponent<Animator>().SetTrigger("vai");
 			if(m_CurrentLives == 0)
 			{
 				m_OnOutOfLives?.Invoke();
