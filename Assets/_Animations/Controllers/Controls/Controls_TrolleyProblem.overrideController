@@ -6,8 +6,8 @@ AnimatorOverrideController:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Controls_Tetris
+  m_Name: Controls_TrolleyProblem
   m_Controller: {fileID: 9100000, guid: f077893288ed58f46a2f3ca0f542afc2, type: 2}
   m_Clips:
   - m_OriginalClip: {fileID: 7400000, guid: db098a7f0f6fafa4387c2815e31aa0d5, type: 2}
-    m_OverrideClip: {fileID: 7400000, guid: 7f956308a869a504490c27778bbc57c7, type: 2}
+    m_OverrideClip: {fileID: 7400000, guid: 9977641cc456a1e4c95376b19cb383b1, type: 2}
