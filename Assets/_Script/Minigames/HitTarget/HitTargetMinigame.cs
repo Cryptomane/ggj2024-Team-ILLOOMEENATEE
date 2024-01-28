@@ -48,6 +48,8 @@ public class HitTargetMinigame : MonoBehaviour
     private void OnDisable()
     {
         InputManager.OnAHit -= OnAHit;
+        InputManager.OnBHit -= OnBHit;
+        InputManager.OnCHit -= OnCHit;
 
         MinigameManager.OnGameStartRequested -= StartMinigame;
 
