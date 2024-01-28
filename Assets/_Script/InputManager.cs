@@ -146,7 +146,7 @@ public class InputManager : MonoBehaviour
 			default:
 				break;
 		}
-		return m_APressed || m_BPressed || m_CPressed;
+        return Input.anyKeyDown;// m_APressed || m_BPressed || m_CPressed;
 	}
 
 	private void LateUpdate()
