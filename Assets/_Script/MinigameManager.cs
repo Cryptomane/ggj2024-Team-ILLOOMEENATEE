@@ -131,12 +131,14 @@ public class MinigameManager : MonoBehaviour
 
 	private void ShowIntro()
 	{
+		m_AudioManager.playIntro();
 		m_RoundIntro.Show(m_Loops);
 	}
 
     private void HideIntro()
     {
         m_RoundIntro.Hide();
+        m_AudioManager.stopIntro();
     }
 
     private void ShowCommands()
