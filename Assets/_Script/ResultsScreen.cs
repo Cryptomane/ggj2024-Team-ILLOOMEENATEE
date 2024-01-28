@@ -5,7 +5,9 @@ using UnityEngine;
 public class ResultsScreen : MonoBehaviour
 {
 	[SerializeField] GameObject m_Score;
-	[SerializeField] TMP_Text m_PointsCurrent;
+    [SerializeField] GameObject m_Outcome;
+    [SerializeField] TMP_Text m_OutcomeText;
+    [SerializeField] TMP_Text m_PointsCurrent;
 	[SerializeField] TMP_Text m_Goal;
 	[SerializeField] GameObject[] m_Lives;
 
@@ -38,14 +40,16 @@ public class ResultsScreen : MonoBehaviour
 		for (int i=0; i < m_Lives.Length; i++)
 		{
 			m_Lives[i].SetActive(i < m_CurrentLives);
-		}
+        }
 
 		bool success = minigame.Success();
 
 		if(!success)
 		{
 			m_CurrentLives--;
-			
+
+            m_Lives[m_CurrentLives - 1].GetComponent<Animator>().SetTrigger("vai");
+            //m_Lives[m_CurrentLives-1].GetComponentInChildren<GameObject>().SetActive(true);
 			if(m_CurrentLives == 0)
 			{
 				m_OnOutOfLives?.Invoke();
@@ -55,12 +59,22 @@ public class ResultsScreen : MonoBehaviour
 		if (minigame.ScoreGoal != 1)
 		{
 			m_Score.SetActive(true);
-			m_PointsCurrent.text = minigame.GetScore().ToString();
+            m_Outcome.SetActive(false);
+            m_PointsCurrent.text = minigame.GetScore().ToString();
 			m_Goal.text = minigame.ScoreGoal.ToString();
 		}
 		else
 		{
 			m_Score.SetActive(false);
+			if (minigame.Success())
+			{
+				m_OutcomeText.text = "SUCCESS";
+			}
+            else
+            {
+                m_OutcomeText.text = "FAIL";
+            }
+            m_Outcome.SetActive(true);
 		}
 	}
 

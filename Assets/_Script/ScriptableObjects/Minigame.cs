@@ -30,6 +30,11 @@ public class Minigame : ScriptableObject
 
 	public bool Success()
 	{
+		if(ScoreGoal == 1)
+		{
+			return m_RoundScore == ScoreGoal;
+		}	
+
 		return m_RoundScore >= m_ScoreGoal;
 	}
 

@@ -110,7 +110,7 @@ public class MinigameManager : MonoBehaviour
                 }
 				break;
 			case GameState.GAME_OVER:
-					SceneManager.LoadScene("GameOver");
+					SceneManager.LoadScene("MainMenu");
 				break;
 			default:
 				break;
