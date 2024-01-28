@@ -7,7 +7,10 @@ public class HitTargetMinigame : MonoBehaviour
     [SerializeField]
     private Transform targetTemplate;
 
-    [SerializeField]
+	[SerializeField]
+	private Animator m_animator;
+
+	[SerializeField]
     private int targetsCount = 10;
 
     [SerializeField]
@@ -33,6 +36,7 @@ public class HitTargetMinigame : MonoBehaviour
     private int targetIndex;
 
     private Minigame minigame;
+	private int m_SuccessAnimParam = Animator.StringToHash("Success");
 
     public bool GameStarted { get; private set; }
 
@@ -127,12 +131,7 @@ public class HitTargetMinigame : MonoBehaviour
             yield return new WaitForSeconds(Random.Range(minSpawnTime, maxSpawnTime));
         }
 
-        //while (controllerA.HasTargets || controllerB.HasTargets || controllerC.HasTargets)
-        //{
-        //    yield return null;
-        //}
-
-        //Debug.Log("Minigame ended");
+		m_animator.SetTrigger(m_SuccessAnimParam);
     }
 
     private void SpawnTarget(Transform target)

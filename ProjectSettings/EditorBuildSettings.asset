@@ -21,12 +21,6 @@ EditorBuildSettings:
     path: Assets/_Scenes/Minigames/Minigame_Golf.unity
     guid: 2435da0ddefa5244da200d3bb0329ff8
   - enabled: 1
-    path: Assets/_Scenes/Minigames/Minigame_Hamburger.unity
-    guid: e602b4cf48f38a14f80ecd6b2d097bbb
-  - enabled: 1
-    path: Assets/_Scenes/Minigames/Minigame_Museum.unity
-    guid: a1d1264af8af0f44ea2c3b0b8a525aed
-  - enabled: 1
     path: Assets/_Scenes/Minigames/Minigame_PetDog.unity
     guid: bc835ce131ab74e44ad4ff71c0e5915f
   - enabled: 1

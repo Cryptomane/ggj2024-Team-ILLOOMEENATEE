@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class AudioManager : MonoBehaviour
 {
+    [SerializeField] private AudioSource m_introSound;
     [SerializeField] private AudioSource m_commandSound;
     [SerializeField] private AudioSource m_minigameSound;
     [SerializeField] private AudioSource m_resultsSound;
@@ -48,6 +49,20 @@ public class AudioManager : MonoBehaviour
 		if (m_commandSound == null)
 			return;
 		m_commandSound.Stop();
+    }
+
+    public void playIntro()
+    {
+        if (m_introSound == null)
+            return;
+        m_introSound.Play();
+    }
+
+    public void stopIntro()
+    {
+        if (m_introSound == null)
+            return;
+        m_introSound.Stop();
     }
 
 }
