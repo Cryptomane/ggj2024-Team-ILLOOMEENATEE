@@ -15,7 +15,7 @@ MonoBehaviour:
   m_SceneName: Minigame_TrolleyProblem
   m_GameName: TrolleyProblem
   m_InstructionsText: RUN OVER THE FEWEST PEOPLE
-  m_InstructionsControlsPrefab: {fileID: 2237229464809820913, guid: ccb57e5141e3c97478183200acc820ee, type: 3}
+  m_InstructionsControlsPrefab: {fileID: 2237229464809820913, guid: 17c458b1ace3c884ca633e8ede60dcfe, type: 3}
   m_ScoreGoal: 1
   m_Duration: 6
   m_MinTarget: 0
