@@ -20,6 +20,7 @@ public class ShakeBehavior : MonoBehaviour
     void Start()
     {
         initialPosition = transform.localPosition;
+		shakeDuration = 0f;
     }
 
     // Update is called once per frame
