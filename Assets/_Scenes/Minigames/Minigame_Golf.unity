@@ -283,6 +283,7 @@ GameObject:
   - component: {fileID: 177422071}
   - component: {fileID: 177422073}
   - component: {fileID: 177422072}
+  - component: {fileID: 177422074}
   m_Layer: 0
   m_Name: BOOM
   m_TagString: Untagged
@@ -378,6 +379,21 @@ SpriteRenderer:
   m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &177422074
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 177422070}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 089ce422c4fcc0e49a206d35fe2b802c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_ShakeShakeShake: {fileID: 0}
+  m_Duration: 2
+  m_Magnitude: 0.2
 --- !u!1 &240490457
 GameObject:
   m_ObjectHideFlags: 0
@@ -566,6 +582,7 @@ GameObject:
   - component: {fileID: 360967539}
   - component: {fileID: 360967538}
   - component: {fileID: 360967541}
+  - component: {fileID: 360967542}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -691,6 +708,19 @@ MonoBehaviour:
     mipBias: 0
     varianceClampScale: 0.9
     contrastAdaptiveSharpening: 0
+--- !u!114 &360967542
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 360967537}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f569ddfcc89dff142934531ae810cd8a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  dampingSpeed: 1
 --- !u!1 &409889838
 GameObject:
   m_ObjectHideFlags: 0
