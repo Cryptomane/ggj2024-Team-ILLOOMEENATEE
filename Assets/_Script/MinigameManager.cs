@@ -30,6 +30,9 @@ public class MinigameManager : MonoBehaviour
 	[SerializeField] private ControlsScreen m_Commands;
 	[SerializeField] private ResultsScreen m_Results;
 
+	[SerializeField] private AudioManager m_AudioManager;
+	//private bool m_isPlay=false;
+
 	private static event Action<Minigame> m_OnGameStartRequested;
 
 	public static event Action<Minigame> OnGameStartRequested
@@ -137,13 +140,15 @@ public class MinigameManager : MonoBehaviour
     }
 
     private void ShowCommands()
-    {
+	{ 
         m_Commands.Show(m_CurrentMinigame);
+        m_AudioManager.playCommand();
     }
 
     private void HideCommands()
     {
         m_Commands.Hide();
+		m_AudioManager.stopCommand();
     }
 
     private void ShowControlsScreen()
@@ -177,11 +182,14 @@ public class MinigameManager : MonoBehaviour
     private void ShowResults()
     {
         m_Results.Show(m_CurrentMinigame);
+		m_AudioManager.stopMinigame();
+		m_AudioManager.playResults();
     }
 
     private void HideResults()
     {
         m_Results.Hide();
+		m_AudioManager.stopResults();
     }
 
     private void ShowResultsScreen()
@@ -202,7 +210,9 @@ public class MinigameManager : MonoBehaviour
 	{
 		HideCommands();
 
-		m_Timer = m_CurrentMinigame.Duration;
+		m_AudioManager.playMinigame();
+
+        m_Timer = m_CurrentMinigame.Duration;
 		m_CurrentState = GameState.MINIGAME;
 		m_CurrentMinigame.ResetScore();
         m_OnGameStartRequested?.Invoke(m_CurrentMinigame);
