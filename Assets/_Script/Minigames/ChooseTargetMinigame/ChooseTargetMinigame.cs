@@ -42,6 +42,8 @@ public class ChooseTargetMinigame : MonoBehaviour
     private void OnDisable()
     {
         InputManager.OnAHit -= OnAHit;
+        InputManager.OnBHit -= OnBHit;
+        InputManager.OnCHit -= OnCHit;
 
         MinigameManager.OnGameStartRequested -= StartMinigame;
 
