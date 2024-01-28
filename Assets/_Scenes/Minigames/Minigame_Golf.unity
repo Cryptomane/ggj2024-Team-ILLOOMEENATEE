@@ -391,7 +391,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 089ce422c4fcc0e49a206d35fe2b802c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_ShakeShakeShake: {fileID: 0}
+  m_ShakeShakeShake: {fileID: 360967542}
   m_Duration: 2
   m_Magnitude: 0.2
 --- !u!1 &240490457
@@ -1368,9 +1368,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 200
-  speedDifficultyMultiplier: 1.5
   rightValueDelta: 0.2
-  rightValueDeltaDifficultyMultiplier: 0.8
   currentSpeed: 0
   currentValue: 0
   currentNormalizedValue: 0
