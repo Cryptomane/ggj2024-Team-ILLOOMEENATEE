@@ -7,8 +7,6 @@ public class ChooseTargetMinigame : MonoBehaviour
     [SerializeField]
     private int maxRandomItems = 5;
 
-    [SerializeField]
-    private int itemsCountMultiplier = 3;
 
     [Space]
 
@@ -93,7 +91,7 @@ public class ChooseTargetMinigame : MonoBehaviour
     {
         int randomItems = maxRandomItems + 1;
 
-        int itemsCount = Random.Range(1, Mathf.Min(10, randomItems + Mathf.RoundToInt(difficulty.Value * itemsCountMultiplier)));
+        int itemsCount = Random.Range(1, Mathf.Min(10, randomItems + Mathf.RoundToInt(difficulty.Value * 3)));
 
         int r1 = Random.Range(1, randomItems);
         int r2 = Random.Range(1, randomItems);

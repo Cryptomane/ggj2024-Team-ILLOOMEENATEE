@@ -6,8 +6,6 @@ public class HitTargetController : MonoBehaviour
 {
     [SerializeField]
     private float speed = 10;
-    [SerializeField]
-    private float speedDifficultyMultiplier = 1.25f;
 
     [SerializeField]
     private float hitRadius = 1;
@@ -65,13 +63,11 @@ public class HitTargetController : MonoBehaviour
 
     public void Initialize(float difficulty)
     {
-        if (difficulty <= 1)
+        currentSpeed = speed;
+
+        if (difficulty > 1)
         {
-            currentSpeed = speed;
-        }
-        else
-        {
-            currentSpeed = (difficulty - 1) * speedDifficultyMultiplier * speed;
+            currentSpeed *= difficulty;
         }
 
         IsInitialized = true;

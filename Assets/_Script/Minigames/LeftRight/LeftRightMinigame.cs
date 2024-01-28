@@ -9,8 +9,6 @@ public class LeftRightMinigame : MonoBehaviour
 	private Animator m_Animator;
 	[SerializeField]
     private float decreaseScoreTime = 0.5f;
-    [SerializeField]
-    private float decreaseScoreTimeMultiplier = 0.8f;
 
     [Space]
 
@@ -76,7 +74,7 @@ public class LeftRightMinigame : MonoBehaviour
         }
         else
         {
-            currentDecreaseScoreTime = decreaseScoreTimeMultiplier / (difficulty.Value - 1) * decreaseScoreTime;
+            currentDecreaseScoreTime = decreaseScoreTime / difficulty.Value;
         }
     }
 

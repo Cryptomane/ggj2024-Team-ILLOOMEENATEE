@@ -8,13 +8,7 @@ public class AimController : MonoBehaviour
     private float speed = 10;
 
     [SerializeField]
-    private float speedDifficultyMultiplier = 1.25f;
-
-    [SerializeField]
     private float rightValueDelta = 0.2f;
-
-    [SerializeField]
-    private float rightValueDeltaDifficultyMultiplier = 0.4f;
 
     [Header("Read-only")]
 
@@ -55,7 +49,7 @@ public class AimController : MonoBehaviour
 
     public void Initialize(float difficulty)
     {
-        TargetValue = Random.Range(0.2f, 0.8f);
+        TargetValue = Random.Range(0.5f, 0.8f);
 
         if (difficulty <= 1)
         {
@@ -64,8 +58,8 @@ public class AimController : MonoBehaviour
         }
         else
         {
-            currentSpeed = (difficulty - 1) * speedDifficultyMultiplier * speed;
-            currentRightValueDelta = rightValueDeltaDifficultyMultiplier / (difficulty - 1) * rightValueDelta;
+            currentSpeed = difficulty * speed;
+            currentRightValueDelta = rightValueDelta / difficulty;
         }        
 
         float halvedDelta = currentRightValueDelta / 2;
