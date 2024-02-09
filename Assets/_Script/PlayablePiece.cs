@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class PlayablePiece : MonoBehaviour
@@ -7,19 +5,14 @@ public class PlayablePiece : MonoBehaviour
     [SerializeField] private float interval = 1;
     [SerializeField] private float nextTime = 0;
     [SerializeField] private int factSpeed = 2;
-    private bool speedUp=false;
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    private bool m_SpeedUp=false;
 
     // Update is called once per frame
     void Update()
     {
         if (Time.time >= nextTime)
         {
-            if (!speedUp)
+            if (!m_SpeedUp)
             {
                 transform.position = transform.position + new Vector3(0f, -0.25f, 0f);
             }

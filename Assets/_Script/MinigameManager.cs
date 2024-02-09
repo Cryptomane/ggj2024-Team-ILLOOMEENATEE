@@ -8,12 +8,12 @@ public class MinigameManager : MonoBehaviour
 {
 	public enum GameState
 	{
-		INTRO,          // Introduce round
-		TRANSITION,     // Transition between states
-		CONTROLS,       // Introduce commands
-		MINIGAME,       // Minigame section start
-		RESULT,          // Result logic that select next minigame, round or game over
-		GAME_OVER          // Result logic that select next minigame, round or game over
+		INTRO,          // 0 Introduce round
+		TRANSITION,     // 1 Transition between states
+		CONTROLS,       // 2 Introduce commands
+		MINIGAME,       // 3 Minigame section start
+		RESULT,         // 4 Result logic that select next minigame, round or game over
+		GAME_OVER       // 5 Result logic that select next minigame, round or game over
 	}
 
 	[SerializeField] private Animator m_TransitionAnimator;
@@ -31,7 +31,6 @@ public class MinigameManager : MonoBehaviour
 	[SerializeField] private ResultsScreen m_Results;
 
 	[SerializeField] private AudioManager m_AudioManager;
-	//private bool m_isPlay=false;
 
 	private static event Action<Minigame> m_OnGameStartRequested;
 
